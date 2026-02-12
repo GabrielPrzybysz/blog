@@ -43,7 +43,7 @@ In one of the first packets, we see something like a nickname and a VERY suggest
 
 Sec558user1....  Here's the secret recipe... I just downloaded it from the file server. Just copy to a thumb drive and you're good to go >:-).
 
-![image](https://github.com/GabrielPrzybysz/gabe-blog/assets/45472156/3a2d12f7-9781-4336-b51f-27a4d3ef94e2)
+![image](/assets/images/1-ann.png)
 
 
 LOOK HOW NICE, isn't it? In my opinion, this warrants immediate dismissal. But it's good; we have some interesting things to discuss:
@@ -67,14 +67,14 @@ Let's start with the first option...
 
 After a while searching, I didn't find any communication from Ann's IP to the file server. BUT, on the other hand, we found some interesting communications, especially from IP 192.168.1.157; it screams in broadcast, and in one of these shouts, we found a clear reference to SMB. So we can assume that Ann possibly downloaded the recipe from the IP ending with 157.
 
-![image-1](https://github.com/GabrielPrzybysz/gabe-blog/assets/45472156/b7c11f8e-6267-41b9-b603-c92386bacdbc)
+![image-1](/assets/images/2-ann.png)
 
 
 Now, let's look at who communicated with host 159. We have some HTTP communications, confirming that the nickname of the fool is Sec558user1:
 
 Referer: http://www.aim.com/redirects/inclient/AIM_UAC_v2.adp?magic=93245558&width=120&height=90&sn=Sec558user1
 
-![image-2](https://github.com/GabrielPrzybysz/gabe-blog/assets/45472156/74d28e02-81e9-4c46-ada3-aac81b0c6359)
+![image-2](/assets/images/3-ann.png)
 
 But nothing beyond that interests us in this context. I could even make a list of hosts that Sec558user1's laptop communicated with while connected, but I don't think it makes much sense in this context. But in the real world, it would be a good starting point to see which company is doing this espionage; if any of the communication IPs were from a known competitor or something similar, the possibilities are varied.
 
@@ -95,7 +95,7 @@ In a medium saucepan, bring the water to a boil. Add sugar. Stir gently over low
 
 ### Incident Flow chart
 
-![Untitled - Frame 1](https://github.com/GabrielPrzybysz/gabe-blog/assets/45472156/bbc7256a-96ac-40c9-8a17-61b17a1bdd88)
+![Untitled - Frame 1](/assets/images/4-ann.jpg)
 
 oft.c -> https://gist.github.com/GabrielPrzybysz/39075947a36030221e5a4f3bf95e3211
 
