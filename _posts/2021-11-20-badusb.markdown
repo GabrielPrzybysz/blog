@@ -1,0 +1,167 @@
+---
+layout: post
+title: BadUsb Attack Analysis
+date: 2021-11-20 20:32:20 +0300
+tags: [c++, security, arduino]
+---
+
+# What is it?
+It is an attack using a device with a USB connection, changing its firmware, causing it to behave like an HID (Human Interface Devices). By default, computers are conditioned to trust this type of device as they are like keyboards and mouse, for example. With that, you can start a command line, download some backdoor or keylogger, hijack information from the browser, among many other results! All this in a short period, so be careful who you access your USB ports and don't lend your pendrive to your friend! It's like you have control over computer's keyboard and mouse, doing everything at a speed above human.
+
+### Warning
+This post is not intended to encourage any illegal activity. It only serves to analyze the mechanisms used by malicious attackers. There is no intention to make our lives less secure (I am completely against anyone trying to do this), quite the contrary, it serves as a warning and a form of precaution. Its purpose is to spread knowledge about information technology and security. Do not use this content for any purpose other than learning more about the subject and protecting your environment.
+
+
+***⁠”Information Security aims to establish procedures to protect the information and data on your computers, ensuring the privacy, solidity, availability, and integrity of your programs and equipment. ” -   J. Barbosa***
+
+# References
+
+### Without the following references, this research would not be possible:
+
+*Pentest Introduction - **Daniel Moreno** <br>
+HoodLoader2.0.5 Documentation and source code - **NicoHood**<br>
+HID Documentation and source code - **NicoHood***
+
+
+Here is an example where the attacker uses BadUSB to download and install a keylogger and the malicious software sends your informations to a server.
+
+![asdd](https://user-images.githubusercontent.com/45472156/142742346-88e727b9-2d81-4585-b3ef-e663ec3b0764.JPG)
+
+ The BadUSB attack was first shown in a Black Hat talk in 2014 by Karsten Nohl, Sascha Krißler and Jakob Lell. Months after the talk, other researchers published code that could be used to exploit the vulnerability. In 2017, the USG was released, designed to prevent BadUSB-type attacks.
+
+
+Lecture link:  [https://www.youtube.com/watch?v=nuruzFqMgIw](https://www.youtube.com/watch?v=nuruzFqMgIw)
+
+# Tech Overview
+
+The study was done using an Arduino UNO, thus making one of its two microcontrollers, “16u2” (which is normally used for USB-Serial translation) to become an AVR Microcontroller with USB functions.
+
+
+### Necessary materials:
+
+
+ - [x] Arduino Uno
+ - [x] 3 female-female cables
+ - [x] 1 female-male cable
+ - [x] Capacitor 100nF
+ - [x] Cable Usb 2.0 A/b - Arduino Uno
+
+# What is HoodLoader2
+
+
+“HoodLoader2 is a CDC BootLoader with self reprogramming and Fast USB-Serial function.
+
+An Arduino Uno/Mega board has two Microcontroller of which one(16u2) is normally used for USB-Serial translation. But we can also use it as standalone AVR Microcontroller with (or without) USB functions as well.
+
+HoodLoader2 gives you the option to reprogram the 16u2 of a normal Arduino Uno/Mega R3 with custom sketches. This means you can use the 16u2 as a normal USB AVR like a Leonardo. You have a full compatible USB-HID core, CDC Serial and you can also use the 7 i/o pins of the 16u2. The extended HID devices of the HID Project also apply for the HoodLoader2.” - [https://github.com/NicoHood/HoodLoader2](https://github.com/NicoHood/HoodLoader2)
+
+
+
+# What is HID
+
+
+The idea is to enable enhanced USB functions to almost all 'standard' Arduino boards.
+
+
+
+# How to install HoodLoader2
+
+With Arduino connected to your computer:
+
+1.  Select the Arduino Uno board like you are used to
+2.  Open the installation sketch  [`Installation_Sketch.ino`](https://github.com/NicoHood/HoodLoader2/tree/master/avr/examples/Installation_Sketch)
+4.  Upload the installation sketch to your Arduino Uno
+5.  Wait until "Done uploading"
+6.  **Disconnect the Arduino from USB**
+
+The Led will blink slow 1blink/sec. Wait until it is finished and the on board led will blink fast 10blink/sec.
+
+URL:`https://raw.githubusercontent.com/NicoHood/HoodLoader2/master/package_NicoHood_HoodLoader2_index.json`
+After
+
+1. Open **Preferences**  of the Arduino IDE.
+2.  Add the URL above in the  **Additional Boards Manager URLs** .
+3.  Open the  **Boards Manager**
+4.  Install  **HoodLoader2**
+5.  Select one of the boards under  **HoodLoader2 Boards**  in Tools->Board menu
+
+![Capture](https://user-images.githubusercontent.com/45472156/142741158-25c0e04d-2009-4215-b024-aec05ab3faf3.PNG)
+
+
+# How to install HID
+   First Download the [Zip](https://github.com/NicoHood/HID/archive/refs/heads/master.zip) . Official instructions on how to install a library can be [found here](https://docs.arduino.cc/software/ide-v1/tutorials/installing-libraries).
+
+# POC
+
+For proof of concept, the code used proposes to open the cmd, start the python compiler and sum two numbers (Nothing harmful was created with this code).
+
+```c++
+#include <HID-Project.h>
+#include <HID-Settings.h>
+
+void typeTextWithEnter(uint8_t key, const char *text)
+{
+  Keyboard.press(key);
+  Keyboard.release(key);
+  Keyboard.print(text);
+  Keyboard.press(KEY_ENTER);
+  Keyboard.release(KEY_ENTER);
+}
+
+void setup()
+{
+  AbsoluteMouse.begin();
+  Keyboard.begin();
+  delay(1000);
+
+  typeTextWithEnter(KEY_LEFT_GUI, "r");
+  delay(200);
+
+  typeTextWithEnter(0, "cmd.exe");
+  delay(1000);
+
+  typeTextWithEnter(0, "python");
+  delay(2000);
+
+  typeTextWithEnter(0, "1 + 1");
+
+  Keyboard.end();
+  AbsoluteMouse.end();
+}
+```
+The following gif aims to show the running code, it shows the moment when the Arduino is connected to the USB and its result, executing the commands in the indicated time:
+
+![ezgif-6-2f42e1eae1f0](https://user-images.githubusercontent.com/45472156/142741198-32395408-57ce-4478-b99f-f17dae299319.gif)
+
+![11b747a9-1bb7-47cd-9c20-b5e93ef1872b](https://user-images.githubusercontent.com/45472156/142741186-498ea1d7-c430-4a9b-8b82-94bf169f0e63.jpg)
+
+#  How to Protect Yourself
+
+"Unfortunately, BadUSB attacks are here to stay. But there are numerous ways to protect your environment from them. The simplest way to stop an automated USB attack is to secure your local desktop environment. Ensure all endpoints are patched, are running anti-virus, and restrict local admin access rights." - **JOHN CIRELLY September 21, 2021**
+
+1. **Use trusted USB ports:**
+   - Avoid using public or unknown USB ports. Whenever possible, use your own USB devices or those you trust.
+
+2. **Use antivirus and antimalware software:**
+   - Keep your antivirus and antimalware software up-to-date to detect and remove potential threats from infected USB devices.
+
+3. **Enable USB port restrictions:**
+   - Many operating systems and security software allow you to disable USB ports or configure restrictions to allow only trusted devices.
+
+4. **Use read-only USB devices:**
+   - When possible, use USB devices with a read-only function. This will prevent data on the device from being modified by malware.
+
+5. **Data encryption:**
+   - Use data encryption on your USB devices. This will ensure that even if the device is lost or stolen, the data will not be accessible without the encryption key.
+
+6. **Disable auto-run:**
+   - Disable the auto-run feature in Windows or other operating systems to prevent malicious programs from running automatically when a USB device is connected.
+
+7. **Scan USB devices before opening:**
+   - Use antivirus software to scan USB devices before opening any files or programs stored on them.
+
+8. **Avoid unknown USB devices:**
+   - Avoid connecting unknown USB devices to your computer, as they may pose a security risk.
+
+<br><br>
+**Author**: Gabriel Przybysz Gonçalves Júnior - Backend Programmer

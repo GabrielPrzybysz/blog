@@ -1,0 +1,27 @@
+---
+layout: default
+title: "~/blog"
+---
+
+<div class="posts-list">
+    {% for post in site.posts %}
+    <article class="post-preview">
+        <h2 class="post-title">
+            <a href="{{ post.url }}" class="stretched-link">{{ post.title }}</a>
+        </h2>
+        <div class="post-meta">
+            <time>{{ post.date | date: "%d/%m/%Y" }}</time>
+            {% if post.tags.size > 0 %}
+            <span class="tags">
+                {% for tag in post.tags limit:5 %}
+                <a class="tag" href="tags#{{ tag | downcase | replace: ' ', '-' }}">#{{ tag }}</a>
+                {% endfor %}
+            </span>
+            {% endif %}
+        </div>
+        {% if post.excerpt %}
+        <p class="excerpt">{{ post.excerpt | strip_html | truncatewords: 35 }}</p>
+        {% endif %}
+    </article>
+    {% endfor %}
+</div>

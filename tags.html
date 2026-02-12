@@ -1,0 +1,46 @@
+---
+layout: default
+title: "~/blog"
+---
+
+<div class="tags-page">
+  <ul class="tag-index">
+    {% assign all_tags = site.posts | map: 'tags' | join: ',' | split: ',' | uniq | sort_natural %}
+    {% for tag in all_tags %}
+      {% if tag != "" and tag != " " %}
+      <li>
+        <a href="#{{ tag | slugify }}" class="tag-link">
+          #{{ tag }}
+          <small>({{ site.posts | where_exp: "post", "post.tags contains tag" | size }})</small>
+        </a>
+      </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+
+  {% for tag in all_tags %}
+    {% if tag != "" and tag != " " %}
+    <section id="{{ tag | slugify }}" class="tag-group">
+      <h2>#{{ tag }}</h2>
+
+      <p class="tag-meta">
+        posts: {{ site.posts | where_exp: "post", "post.tags contains tag" | size }} 
+      </p>
+
+      <ul class="post-list">
+        {% assign sorted_posts = site.posts | where_exp: "post", "post.tags contains tag" | sort: 'date' | reverse %}
+        {% for post in sorted_posts %}
+        <li>
+          <a href="{{ post.url | relative_url }}" class="post-title">
+            {{ post.title | escape }}
+          </a>
+          <time datetime="{{ post.date | date_to_xmlschema }}">
+            {{ post.date | date: "%d/%m/%Y" }}
+          </time>
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+  {% endfor %}
+</div>

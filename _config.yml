@@ -1,0 +1,51 @@
+title: "~/perxibes-blog"
+description: >
+  I build systems, debug, and sometimes break things on purpose.
+  © 2026 — All rights reserved. No packets were harmed in the making of this blog.
+url: ""
+baseurl: ""
+lang: en
+
+safe: true 
+disable_disk_cache: true
+strict_front_matter: true
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: 'highlight'
+    default_lang: text
+  hard_wrap: false
+  auto_ids: true
+  entity_output: as_char
+  smart_quotes: ["apos", "apos", "quot", "quot"]
+  
+plugins: []
+
+incremental: false
+profile: false
+
+collections:
+  posts:
+    output: true
+    permalink: /post/:title/
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - .git
+  - .gitignore
+  - vendor
+
+include:
+  - _pages

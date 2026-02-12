@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ page.description | default: site.description }}">
+    <title>{{ page.title | default: site.title }}</title>
+    <link rel="icon" type="image/png" href="{{ '/assets/images/logo.png' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a class="logo-url" href="{{ '/posts' | relative_url }}">
+                    <img src="/assets/images/logo.png" alt="Logo" style="width: 70px; height: 70px; vertical-align: middle; padding: 0; margin: 0;">
+                    ~/blog
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="{{ '/' | relative_url }}">about_me</a>
+                <a href="{{ '/posts' | relative_url }}">posts</a>
+                <a href="{{ '/tags' | relative_url }}">tags</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        {{ content }}
+    </main>
+
+    <footer>
+        <p>{{ site.description }}</p>
+    </footer>
+</body>
+</html>
