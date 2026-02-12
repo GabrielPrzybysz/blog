@@ -64,7 +64,7 @@ This kind of issue is entirely foreseeable and solvable on the part of the GitHu
 
 ## Video POC
 
-![video](/assets/images/github-video.mp4)
+<a href="/assets/images/github-video.mp4">Video POC</a>
 
 ## Host Your Files
 
