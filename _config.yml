@@ -50,5 +50,5 @@ exclude:
 include:
   - _pages
 
-url: "https://gabrielprzbysz.github.io"
-baseurl: "/blog"  
+url: "https://perxibes.net"
+baseurl: "/"  
