@@ -64,11 +64,7 @@ This kind of issue is entirely foreseeable and solvable on the part of the GitHu
 
 ## Video POC
 
-
-
-https://github.com/GabrielPrzybysz/gabeblog/assets/45472156/547ed8a4-1f76-46d1-a255-beb2d137050a
-
-
+![video](/assets/images/github-video.mp4)
 
 ## Host Your Files
 
@@ -78,7 +74,7 @@ The upside to all this is: You can host your files for free, LOL. Is your Drive 
 
 You can test it for yourself by entering this super secure link from the GitHub repository: https://github.com/github/ruby/assets/45472156/bf9410cf-232d-450a-bf61-d1209ee0637e
 
-And with this payload ![image](https://github.com/GabrielPrzybysz/gabeblog/assets/45472156/56cfd044-fb93-4742-8346-b4cf732153bd)
+And with this payload ![image](/assets/images/github-1.png)
 
 ![a](https://github.com/github/ruby/assets/45472156/b56b6c50-6ce7-4121-b367-8f96311fc86e)
 
