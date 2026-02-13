@@ -21,8 +21,9 @@ kramdown:
   auto_ids: true
   entity_output: as_char
   smart_quotes: ["apos", "apos", "quot", "quot"]
-  
-plugins: []
+
+plugins:
+  - jekyll-sitemap
 
 incremental: false
 profile: false
