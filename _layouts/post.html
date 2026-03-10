@@ -6,10 +6,11 @@ layout: default
     
     <div class="post-meta">
         <time datetime="{{ page.date | date_to_xmlschema }}">
-            {{ page.date | date: "%d/%m/%Y" }}
+            {{ page.date | date: "%b %d, %Y" }}
         </time>
         {% if page.tags %}
-        <div class="tags">
+        <span style="opacity: 0.3;">·</span>
+        <div class="post-tags">
             {% for tag in page.tags %}
             <a href="{{ '/tags' | relative_url }}#{{ tag | slugify }}" class="tag">{{ tag }}</a>
             {% endfor %}

@@ -3,24 +3,30 @@ layout: default
 title: "Posts - Perxibes"
 ---
 
+<div class="page-hero">
+    <h1>All <span class="accent">Posts</span></h1>
+    <p>Security research, infrastructure tales, and things that broke production.</p>
+</div>
+
 <div class="posts-list">
     {% for post in site.posts %}
     <article class="post-preview">
-        <h2 class="post-title">
-            <a href="{{ post.url }}" class="stretched-link">{{ post.title }}</a>
-        </h2>
         <div class="post-meta">
-            <time>{{ post.date | date: "%d/%m/%Y" }}</time>
+            <time>{{ post.date | date: "%b %d, %Y" }}</time>
             {% if post.tags.size > 0 %}
-            <span class="tags">
-                {% for tag in post.tags limit:5 %}
-                <a class="tag" href="tags#{{ tag | downcase | replace: ' ', '-' }}">#{{ tag }}</a>
+            <span style="opacity: 0.3;">·</span>
+            <span class="post-tags">
+                {% for tag in post.tags limit:3 %}
+                <a class="tag" href="tags#{{ tag | downcase | replace: ' ', '-' }}">{{ tag }}</a>
                 {% endfor %}
             </span>
             {% endif %}
         </div>
+        <h2 class="post-title">
+            <a href="{{ post.url }}" class="stretched-link">{{ post.title }}</a>
+        </h2>
         {% if post.excerpt %}
-        <p class="excerpt">{{ post.excerpt | strip_html | truncatewords: 35 }}</p>
+        <p class="excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
         {% endif %}
     </article>
     {% endfor %}

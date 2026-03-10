@@ -4,6 +4,11 @@ title: "Tags - Perxibes"
 ---
 
 <div class="tags-page">
+  <div class="page-hero">
+    <h1>Browse by <span class="accent">Tag</span></h1>
+    <p>Filter posts by topic.</p>
+  </div>
+
   <ul class="tag-index">
     {% assign all_tags = site.posts | map: 'tags' | join: ',' | split: ',' | uniq | sort_natural %}
     {% for tag in all_tags %}
@@ -22,9 +27,8 @@ title: "Tags - Perxibes"
     {% if tag != "" and tag != " " %}
     <section id="{{ tag | slugify }}" class="tag-group">
       <h2>#{{ tag }}</h2>
-
       <p class="tag-meta">
-        posts: {{ site.posts | where_exp: "post", "post.tags contains tag" | size }} 
+        {{ site.posts | where_exp: "post", "post.tags contains tag" | size }} posts
       </p>
 
       <ul class="post-list">
@@ -35,7 +39,7 @@ title: "Tags - Perxibes"
             {{ post.title | escape }}
           </a>
           <time datetime="{{ post.date | date_to_xmlschema }}">
-            {{ post.date | date: "%d/%m/%Y" }}
+            {{ post.date | date: "%b %d, %Y" }}
           </time>
         </li>
         {% endfor %}
