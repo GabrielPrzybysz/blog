@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" href="{{ '/assets/images/logo.png' | relative_url }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}">
 </head>
 <body>
@@ -21,9 +21,9 @@
                 </a>
             </div>
             <div class="nav-links">
-                <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>about</a>
-                <a href="{{ '/posts' | relative_url }}" {% if page.url == '/posts.html' or page.url contains '/post/' %}class="active"{% endif %}>posts</a>
-                <a href="{{ '/tags' | relative_url }}" {% if page.url == '/tags.html' %}class="active"{% endif %}>tags</a>
+                <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>/about</a>
+                <a href="{{ '/posts' | relative_url }}" {% if page.url == '/posts.html' or page.url contains '/post/' %}class="active"{% endif %}>/posts</a>
+                <a href="{{ '/tags' | relative_url }}" {% if page.url == '/tags.html' %}class="active"{% endif %}>/tags</a>
             </div>
         </nav>
     </header>
