@@ -3,6 +3,7 @@ layout: post
 title: AskFlow Pentest
 date: 2023-09-01 20:32:20 +0300
 tags: [python3, cloudflare, security, pentest]
+description: "perxibes (Gabriel Przybysz) performs a manual penetration test on AskFlow, a Go application, discovering vulnerabilities using only Python within a 6-hour time constraint."
 ---
 
 ## Introduction

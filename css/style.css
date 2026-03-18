@@ -438,6 +438,23 @@ main {
     margin: 2rem 0;
 }
 
+.post-author {
+    margin-top: 2.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.85rem;
+    opacity: 0.6;
+}
+
+.post-author a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.post-author a:hover {
+    text-decoration: underline;
+}
+
 /* =========== TAGS PAGE =========== */
 
 .tags-page {
