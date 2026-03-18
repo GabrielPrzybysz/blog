@@ -2,6 +2,7 @@
 layout: post
 title: "Curiosities about Mirai Malware"
 date: 2024-04-08 20:32:20 +0300
+description: "A digestible code analysis of the Mirai botnet malware: how it scanned IoT devices, performed brute-force attacks with default credentials, propagated as a worm, and took down major internet services in 2016."
 tags: [c, malware, ddos]
 ---
 

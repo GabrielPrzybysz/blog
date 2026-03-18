@@ -2,8 +2,6 @@ title: "~/perxibes-blog"
 description: >
   I build systems, debug, and sometimes break things on purpose.
   © 2026 — All rights reserved. No packets were harmed in the making of this blog.
-url: ""
-baseurl: ""
 lang: en
 
 safe: true 
@@ -53,4 +51,4 @@ include:
   - _pages
 
 url: "https://perxibes.net"
-baseurl: "/"  
+baseurl: ""

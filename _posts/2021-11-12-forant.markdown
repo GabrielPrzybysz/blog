@@ -2,14 +2,15 @@
 layout: post
 title: How I Build a Serverless Chan Forum
 date: 2021-11-12 20:32:20 +0300
+description: "Learn how I built Forant Anonymous Topics — a serverless chan-style forum — using ASP.NET, AWS API Gateway, DynamoDB, and Python Lambda functions in just three days."
 tags: [csharp, aws cloud]
 ---
 
-# **Intro**
+## **Intro**
 This post is intended to share an experiment I performed trying to create a chan forum. As a personal goal, I had the idea to build everything in just three days.
 Forant Anonymous Topics is based/inspired by the famous 4Chan. In it, users post random topics anonymously, where the newest ones are above the old ones. However, on Forant Anonymous Topics, daily, topics are automatically deleted. The interface is simple and, image upload is not allowed. Creating it was 100% free for testing (Using the AWS Cloud's free tier services.)
 
-# Flowchart and overview
+## Flowchart and overview
 The application was created using ASP.NET, which allows the creation of dynamic pages, together with AWS Cloud, allowing the creation of REST APIs (API Gateway), a NoSQL database (DynamoDB), and Lambdas (Python 3.8). The application's core is the data requests for the API Gateway using the Services.cs class. The REST APIs make a call to a specific lambda of put, get, or comment. With the information received, it is possible to create dynamic pages, listing comments, topics, authors... Using a Topic object, which shapes the elements brought from the database, which has the following structure: <br>
 
 |Parameter| Value|
@@ -127,7 +128,7 @@ Thus, performing a put operation for DynamoDB, adding one more daily topic.
 ### Daily-Remover
 It scans the entire dynamo table daily and using boto3's batch_writer feature, it deletes item by item
 
-# API Gateway
+## API Gateway
 
 All my REST APIs have an api-key, thus making the process more secure, and also in them, there is a limit of requests per second, thus avoiding any attack of multiple requests.
 

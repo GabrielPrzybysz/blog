@@ -2,6 +2,7 @@
 layout: post 
 title: LiveOps Localization System for Your Game 
 date: 2022-01-15 20:32:20 +0300 
+description: "How to build a LiveOps localization system for Unity games using Google Sheets, AWS Lambda, S3, and a CSV parser — update any in-game text in under 10 minutes without a new build."
 tags: [csharp, tools, python3, aws cloud, unity] 
 --- 
 
@@ -31,7 +32,7 @@ The file path follows this flow: Google Sheets → AWS Lambda → AWS S3 → Sta
 - C# 
 - Python3 
 
-# Why Use this Technique? 
+## Why Use this Technique? 
 
 ### **Anyone can edit the localization** 
 Not only programmers can edit localization files. Anyone can it's simple to edit strings within the game. It is no longer a complex and dangerous file. It becomes a spreadsheet that is easy to access and modify. 
@@ -45,7 +46,7 @@ We will see at the time of creating our spreadsheet how to make the margin of er
 ### **Promotional texts anytime** 
 By adding the LiveOps system, it's possible to build a "What's New" for your game, for example. In which you can put any text. Encouraging the purchase of some DLC or something! All this without any build, recompilation, etc. 
 
-# Creating the Spreadsheet 
+## Creating the Spreadsheet 
 
 ### **Struct** 
 The structure is simple. The "header" of the spreadsheet has the access key and its corresponding languages. For example, the first column is labeled "KEY", followed by columns for each language: "en", "es", "pt", etc. Each row then contains the key identifier and its translations across all languages.
@@ -65,14 +66,14 @@ Unnecessary characters are common. Space at the end and beginning of the cell, t
 ### **Permissions** 
 Set your Google Sheet permissions to "Anyone on the internet with this link can view". This can be configured in the Share settings of your Google Sheet by selecting "Change to anyone with the link" and setting the permission level to "Viewer".
 
-# Creating Bucket on AWS 
+## Creating Bucket on AWS 
 
 This AWS bucket stores the Localization .csv. This .csv comes from a Lambda that we will create in the future, which will feed on our Google Sheets spreadsheet and save the .csv here! 
 
 1. Enable bucket ACL 
 2. Does not block all public access 
 
-# Creating Lambda 
+## Creating Lambda 
 
 After carrying out the previous steps, we need a way to have a version of our spreadsheet in AWS S3 in the correct file format, for we are going to use lambdas AWS 
 
@@ -82,7 +83,7 @@ b. AWS Lambda Has Strong Security Support
 c. AWS Lambdas Are Event Driven 
 d. You Only Pay for What You Use 
 
-To create our lambda we use the lambdas system offered by AWS, and python3 (Teaching how to create it in [previous post](https://gabrielprzybysz.github.io/gabeblog/forant/) on "Lambdas" section). The lambda created below can be called by some API or scheduler to constantly update localization. 
+To create our lambda we use the lambdas system offered by AWS, and python3 (Teaching how to create it in [previous post](/post/how-i-build-a-serverless-chan-forum/) on "Lambdas" section). The lambda created below can be called by some API or scheduler to constantly update localization. 
 
 First of all, the packages used are: 
 
@@ -130,7 +131,7 @@ def create_file_in_s3():
     s3.Bucket(BUCKET_NAME).put_object(ACL='public-read-write', Key=FILE_NAME, Body=binary_csv)
 ```
 
-# .csv Unity Parser 
+## .csv Unity Parser 
 
 Now in Unity, we need to find a way to use the created file. It needs to be easily accessible by the UI system. An example: LocalizationController.Localize(string id) - the function that returns a localized string for the current language selected by the player, thus making all texts dynamically change. 
 
@@ -263,7 +264,7 @@ public class TextLocalize : MonoBehaviour
 
 Example of use: Add the TextLocalize component to any Unity Text GameObject, then set the "_keyToLocalize" field in the Inspector to the key you want to display (such as "greeting_hello" or "menu_start"). When the GameObject is enabled, the text will automatically update to show the localized version based on the current language setting.
 
-# Thanks 
+## Thanks 
 
 With this, I hope to make it easier for game developers to create a localization system for their games. I'm a Computer Science student with experience in the gaming industry, and here I showed some techniques I learned. If you have any questions or improvements, send me an email, or access any of my other social networks (they can be found here in the lower-left corner). 
 

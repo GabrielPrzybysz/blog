@@ -2,6 +2,7 @@
 layout: post
 title: AskFlow Pentest
 date: 2023-09-01 20:32:20 +0300
+description: "A whitebox penetration test of AskFlow, a Go web application, covering DoS via request exhaustion, IDOR authentication bypass, SSRF via image injection, and unauthenticated email API exposure."
 tags: [python3, cloudflare, security, pentest]
 ---
 
