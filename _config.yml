@@ -1,10 +1,16 @@
-title: "~/perxibes-blog"
+title: "perxibes — Gabriel Przybysz"
 description: >
-  I build systems, debug, and sometimes break things on purpose.
-  © 2026 — All rights reserved. No packets were harmed in the making of this blog.
-url: ""
-baseurl: ""
+  perxibes is Gabriel Przybysz — security engineer writing about vulnerabilities, pentesting,
+  infrastructure, and cybersecurity. Przybysz documents the hard-won lessons so you don't have to
+  learn them the painful way. © 2026 — All rights reserved.
+url: "https://perxibes.net"
+baseurl: "/"
 lang: en
+author:
+  name: "Gabriel Przybysz"
+  handle: "perxibes"
+  github: "https://github.com/GabrielPrzybysz"
+  linkedin: "https://linkedin.com/in/gabriel-przybysz/"
 
 safe: true 
 disable_disk_cache: true
@@ -51,6 +57,3 @@ exclude:
 
 include:
   - _pages
-
-url: "https://perxibes.net"
-baseurl: "/"  

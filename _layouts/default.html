@@ -3,13 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{{ page.description | default: site.description }}">
+    <meta name="description" content="{{ page.description | default: site.description | strip_newlines | strip }}">
+    <meta name="author" content="{{ site.author.name }}">
+    <meta name="keywords" content="perxibes, gabriel przybysz, przybysz, security engineer, pentesting, cybersecurity, vulnerability research">
+    <meta name="robots" content="index, follow">
     <title>{{ page.title | default: site.title }}</title>
+    <link rel="canonical" href="{{ page.url | absolute_url }}">
     <link rel="icon" type="image/png" href="{{ '/assets/images/logo.png' | relative_url }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{ page.title | default: site.title | escape }}">
+    <meta property="og:description" content="{{ page.description | default: site.description | strip_newlines | strip | escape }}">
+    <meta property="og:url" content="{{ page.url | absolute_url }}">
+    <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+    <meta property="og:site_name" content="perxibes">
+    <meta property="og:image" content="{{ '/assets/images/logo.png' | absolute_url }}">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ page.title | default: site.title | escape }}">
+    <meta name="twitter:description" content="{{ page.description | default: site.description | strip_newlines | strip | escape }}">
+
+    <!-- JSON-LD: WebSite -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "perxibes",
+      "alternateName": "Gabriel Przybysz Blog",
+      "url": "{{ site.url }}{{ site.baseurl }}",
+      "author": {
+        "@type": "Person",
+        "name": "Gabriel Przybysz",
+        "alternateName": "perxibes",
+        "url": "{{ site.url }}{{ site.baseurl }}"
+      }
+    }
+    </script>
+
+    {% if page.url == '/' %}
+    <!-- JSON-LD: Person (About page) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Gabriel Przybysz",
+      "alternateName": "perxibes",
+      "url": "{{ site.url }}{{ site.baseurl }}",
+      "sameAs": [
+        "{{ site.author.github }}",
+        "{{ site.author.linkedin }}"
+      ],
+      "jobTitle": "Security Engineer",
+      "knowsAbout": ["Cybersecurity", "Pentesting", "Vulnerability Research", "Infrastructure"]
+    }
+    </script>
+    {% endif %}
 </head>
 <body>
     <header>

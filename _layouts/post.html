@@ -1,6 +1,31 @@
 ---
 layout: default
 ---
+<!-- JSON-LD: BlogPosting -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ page.title | jsonify }},
+  "url": "{{ page.url | absolute_url }}",
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "dateModified": "{{ page.date | date_to_xmlschema }}",
+  "author": {
+    "@type": "Person",
+    "name": "Gabriel Przybysz",
+    "alternateName": "perxibes",
+    "url": "{{ site.url }}{{ site.baseurl }}"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Gabriel Przybysz",
+    "alternateName": "perxibes",
+    "url": "{{ site.url }}{{ site.baseurl }}"
+  }{% if page.description %},
+  "description": {{ page.description | jsonify }}{% endif %}
+}
+</script>
+
 <article class="post-article">
     <h1>{{ page.title }}</h1>
     
@@ -20,5 +45,9 @@ layout: default
     
     <div class="post-content">
         {{ content }}
+    </div>
+
+    <div class="post-author">
+        <p>Written by <a href="{{ '/' | relative_url }}"><strong>Gabriel Przybysz</strong></a> (perxibes) — security engineer.</p>
     </div>
 </article>

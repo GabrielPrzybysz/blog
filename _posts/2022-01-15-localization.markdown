@@ -2,7 +2,8 @@
 layout: post 
 title: LiveOps Localization System for Your Game 
 date: 2022-01-15 20:32:20 +0300 
-tags: [csharp, tools, python3, aws cloud, unity] 
+tags: [csharp, tools, python3, aws cloud, unity]
+description: "Gabriel Przybysz (perxibes) details how to build a LiveOps localization system for games using C#, Python, AWS, and Unity — enabling real-time content updates without app re-releases."
 --- 
 
 ### **Purpose** 
